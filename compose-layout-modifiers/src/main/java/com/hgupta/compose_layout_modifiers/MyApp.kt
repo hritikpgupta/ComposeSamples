@@ -69,7 +69,6 @@ fun MyApp() {
         ArtistCard()
         ImageCard()
         CoilImageCard()
-
     }
 }
 

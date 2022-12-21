@@ -14,8 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.ImageShader
+import androidx.compose.ui.graphics.ShaderBrush
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -33,7 +38,7 @@ fun ArtistCard() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.LightGray.copy(alpha = 0.4f))
+                .background(Color.LightGray.copy(alpha = 0.3f))
                 .padding(4.dp), verticalArrangement = Arrangement.Top
         ) {
             Row(
@@ -80,8 +85,11 @@ fun ArtistCard() {
     }
 }
 
+@OptIn(ExperimentalTextApi::class)
 @Composable
 fun CoilImageCard() {
+    val imageBrush =
+        ShaderBrush(ImageShader(ImageBitmap.imageResource(id = R.drawable.download)))
     Card(
         elevation = 3.dp,
         shape = RoundedCornerShape(16.dp),
@@ -94,14 +102,24 @@ fun CoilImageCard() {
                 .background(Color.LightGray.copy(alpha = 0.4f))
                 .padding(4.dp)
         ) {
-            AsyncImage(
-                model = "https://developer.android.com/static/images/jetpack/compose/graphics-bw.png",
-                contentDescription = "Test",
-                modifier = Modifier
-                    .requiredSize(80.dp)
-                    .padding(4.dp)
-                    .clip(CircleShape)
-            )
+            Row {
+                AsyncImage(
+                    model = "https://developer.android.com/static/images/jetpack/compose/graphics-bw.png",
+                    contentDescription = "Test",
+                    modifier = Modifier
+                        .requiredSize(80.dp)
+                        .padding(4.dp)
+                        .clip(CircleShape)
+                )
+                Text(
+                    text = "Hello Android!",
+                    style = TextStyle(
+                        brush = imageBrush,
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 36.sp
+                    )
+                )
+            }
         }
     }
 }

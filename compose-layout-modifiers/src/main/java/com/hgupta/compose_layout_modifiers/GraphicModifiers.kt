@@ -10,15 +10,17 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.DrawModifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.drawscope.ContentDrawScope
+import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
@@ -41,6 +43,7 @@ fun DefaultPreview2() {
         }
     }
 }
+
 
 @Composable
 fun CustomGraphicModifiers() {
@@ -170,7 +173,7 @@ fun CustomGraphicModifiers() {
     Column(modifier = Modifier.padding(16.dp)) {
         Box(modifier = Modifier
             .size(200.dp)
-            .border(2.dp,Color.Black)
+            .border(2.dp, Color.Black)
             .graphicsLayer {
                 clip = true
                 shape = CircleShape
@@ -189,19 +192,18 @@ fun CustomGraphicModifiers() {
             modifier = Modifier
                 .size(200.dp)
                 .clip(RoundedCornerShape(500.dp))
-                .background(Color.Transparent)
-        ){
-            Image(
-                painter = painterResource(id = R.drawable.download),
+                .background(Color.White)
+        ) {
+            Image(painter = painterResource(id = R.drawable.download),
                 contentScale = ContentScale.FillBounds,
                 contentDescription = "clock",
                 modifier = Modifier
                     .requiredSize(200.dp)
                     .graphicsLayer {
                         this.alpha = 0.5f
-                    }
-            )
+                    })
         }
+
     }
 
 }
