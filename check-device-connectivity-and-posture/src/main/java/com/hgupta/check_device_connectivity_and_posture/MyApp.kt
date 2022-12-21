@@ -20,7 +20,11 @@ fun MyApp(
     if (appState.isOnline) {
         NavHost(navController = appState.navController, startDestination = Screen.Home.route ){
             composable(Screen.Home.route) {
-                Home()
+                Home(
+                    navigateToSettings = {
+                        appState.navigateToSettings()
+                    }
+                )
             }
             composable(Screen.Settings.route){
                 Settings()
