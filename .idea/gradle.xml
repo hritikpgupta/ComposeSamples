@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/check-device-connectivity-and-posture" />
             <option value="$PROJECT_DIR$/compose-layout-modifiers" />
+            <option value="$PROJECT_DIR$/compose-text-list" />
           </set>
         </option>
       </GradleProjectSettings>

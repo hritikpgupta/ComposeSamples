@@ -16,3 +16,4 @@ rootProject.name = "Compose Samples"
 include ':app'
 include ':check-device-connectivity-and-posture'
 include ':compose-layout-modifiers'
+include ':compose-text-list'
