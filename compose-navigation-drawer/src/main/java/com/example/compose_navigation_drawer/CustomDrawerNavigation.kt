@@ -1,17 +1,17 @@
 package com.example.compose_navigation_drawer
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -19,6 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomDrawerNavigation(navController: NavController, onItemClick: (NavDrawerItem) -> Unit) {
 
@@ -34,6 +35,25 @@ fun CustomDrawerNavigation(navController: NavController, onItemClick: (NavDrawer
 
     LazyColumn {
         items(navItems) { item ->
+            NavigationDrawerItem(icon = {
+                Icon(painter = painterResource(id = item.icon), contentDescription = null)
+            }, label = {
+                Text(
+                    text = item.title, style = TextStyle(fontSize = 16.sp)
+                )
+            }, selected = currentRoute == item.screenRoute, onClick = {
+                navController.navigate(item.screenRoute) {
+                    navController.graph.startDestinationRoute?.let { screenRoute ->
+                        popUpTo(screenRoute) {
+                            saveState = true
+                        }
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+                onItemClick(item)
+            })
+/*
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .clickable {
@@ -57,6 +77,7 @@ fun CustomDrawerNavigation(navController: NavController, onItemClick: (NavDrawer
                     style = TextStyle(fontSize = 16.sp)
                 )
             }
+*/
 
         }
     }
