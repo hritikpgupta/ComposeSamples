@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/check-device-connectivity-and-posture" />
+            <option value="$PROJECT_DIR$/compose-animation" />
             <option value="$PROJECT_DIR$/compose-bottom-navigation" />
             <option value="$PROJECT_DIR$/compose-layout-modifiers" />
             <option value="$PROJECT_DIR$/compose-navigation-drawer" />
